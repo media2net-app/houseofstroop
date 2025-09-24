@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza19ETFNlRkp0R2VacXBxUkZTVjVjNi0iLCJhcGlfa2V5IjoiMDFLNVhWRDgxWlFKWDczNFpCV1gxOTBDRlEiLCJ0ZW5hbnRfaWQiOiI2NTM3ZGI5MzI5NTJjYzE0MDk5OTNkOTk2MGY5ZjVlNzAwYWNkMDAzYmY5ZTM4NGIyZWM3YTVkODc0NWRkMDBkIiwiaW50ZXJuYWxfc2VjcmV0IjoiY2RhNmIwNWYtYzQ3OS00YjMxLTg2NmMtNWE0ZDYzZDkxNWVhIn0.iROViAO2PJk_u32qFALDTJ3XUX0tfiNLcFcD3zHqt54"
 }
 
 model User {

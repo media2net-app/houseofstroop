@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     // Create JWT token
     const token = jwt.sign(
       { userId: user.id, email: user.email, role: user.role },
-      process.env.JWT_SECRET || 'your-secret-key',
+      process.env.JWT_SECRET || 'house-of-stroop-super-secret-jwt-key-2024',
       { expiresIn: '7d' }
     );
 

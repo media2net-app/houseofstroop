@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HeroContent {
+  id          String   @id @default(cuid())
+  title       String
+  subtitle    String
+  backgroundImage String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model MenuCategory {
+  id          String   @id @default(cuid())
+  title       String
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  sections    MenuSection[]
+}
+
+model MenuSection {
+  id          String   @id @default(cuid())
+  title       String
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  categoryId  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  category    MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  items       MenuItem[]
+}
+
+model MenuItem {
+  id          String   @id @default(cuid())
+  name        String
+  price       String?
+  description String?
+  note        String?
+  isPopular   Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  order       Int      @default(0)
+  sectionId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  section     MenuSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+}
+
+model InstagramPost {
+  id          String   @id @default(cuid())
+  imageUrl    String
+  caption     String
+  permalink   String
+  isActive    Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PageContent {
+  id          String   @id @default(cuid())
+  page        String   @unique
+  title       String
+  content     String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Image {
+  id          String   @id @default(cuid())
+  filename    String
+  originalName String
+  url         String
+  alt         String?
+  category    String?
+  size        Int
+  mimeType    String
+  createdAt   DateTime @default(now())
+}

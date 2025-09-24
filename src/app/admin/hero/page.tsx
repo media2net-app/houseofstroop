@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Save, Eye } from 'lucide-react';
+import ImageUpload from '@/components/ImageUpload';
 
 interface HeroContent {
   id: string;
@@ -134,19 +135,11 @@ export default function HeroManagement() {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-stroop-700 mb-2">
-                Background Image URL *
-              </label>
-              <input
-                type="url"
-                required
-                value={heroContent?.backgroundImage || ''}
-                onChange={(e) => setHeroContent(prev => prev ? { ...prev, backgroundImage: e.target.value } : null)}
-                className="w-full px-3 py-2 border border-stroop-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-stroop-500"
-                placeholder="/highlights/_OP24522.jpg"
-              />
-            </div>
+            <ImageUpload
+              label="Background Image"
+              currentImage={heroContent?.backgroundImage}
+              onImageUpload={(url) => setHeroContent(prev => prev ? { ...prev, backgroundImage: url } : null)}
+            />
 
             <div className="flex items-center space-x-4">
               <label className="flex items-center">

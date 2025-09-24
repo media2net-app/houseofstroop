@@ -12,6 +12,7 @@ import {
   Save,
   X
 } from 'lucide-react';
+import ImageUpload from '@/components/ImageUpload';
 
 interface InstagramPost {
   id: string;
@@ -152,19 +153,11 @@ export default function InstagramManagement() {
             <h2 className="text-xl font-bold text-stroop-700 mb-4">Add New Instagram Post</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-stroop-700 mb-2">
-                    Image URL *
-                  </label>
-                  <input
-                    type="url"
-                    required
-                    value={formData.imageUrl}
-                    onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                    className="w-full px-3 py-2 border border-stroop-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-stroop-500"
-                    placeholder="/highlights/_OP15078.jpg"
-                  />
-                </div>
+                <ImageUpload
+                  label="Post Image"
+                  currentImage={formData.imageUrl}
+                  onImageUpload={(url) => setFormData({ ...formData, imageUrl: url })}
+                />
                 <div>
                   <label className="block text-sm font-medium text-stroop-700 mb-2">
                     Order

@@ -71,15 +71,11 @@ export default async function Menu() {
                       {section.items.map((item, itemIndex) => (
                         <div
                           key={item.name}
-                          className={`flex items-center justify-between py-3 px-4 rounded-lg hover:bg-stroop-50 transition-colors animate-fade-in-left ${
-                            item.isDescription ? 'bg-stroop-100' : ''
-                          }`}
+                          className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-stroop-50 transition-colors animate-fade-in-left"
                           style={{ animationDelay: `${itemIndex * 0.05}s` }}
                         >
                           <div className="flex-1">
-                            <h4 className={`font-semibold ${
-                              item.isDescription ? 'text-stroop-600 text-sm italic' : 'text-stroop-700 text-lg'
-                            }`}>
+                            <h4 className="font-semibold text-stroop-700 text-lg">
                               {item.name}
                             </h4>
                             {item.note && (

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
-import { motion } from 'framer-motion';
 import { MapPin, Clock, Phone, Mail, Send, CheckCircle } from 'lucide-react';
 
 export default function Contact() {
@@ -39,11 +38,7 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="pt-20 pb-16 stroop-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="animate-fade-in-up">
             <h1 className="text-5xl md:text-6xl font-bold text-stroop-700 mb-6">
               Contact
             </h1>
@@ -51,7 +46,7 @@ export default function Contact() {
               Heb je vragen of wil je meer weten? Neem gerust contact met ons op! 
               We staan klaar om je te helpen.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -60,12 +55,7 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <div className="animate-fade-in-left">
               <h2 className="text-3xl font-bold text-stroop-700 mb-8">
                 Contact Informatie
               </h2>
@@ -147,16 +137,10 @@ export default function Contact() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Map */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
+            <div className="animate-fade-in-right">
               <div className="bg-stroop-200 rounded-2xl p-8 h-96 flex items-center justify-center">
                 <div className="text-center">
                   <MapPin className="w-16 h-16 text-stroop-600 mx-auto mb-4" />
@@ -171,7 +155,7 @@ export default function Contact() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -179,13 +163,7 @@ export default function Contact() {
       {/* Contact Form Section */}
       <section className="py-16 stroop-gradient">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
+          <div className="animate-fade-in-up">
             <h2 className="text-4xl font-bold text-stroop-700 mb-4">
               Stuur ons een bericht
             </h2>
@@ -193,15 +171,9 @@ export default function Contact() {
               Heb je een vraag, suggestie of wil je een reservering maken? 
               Vul het formulier hieronder in en we nemen zo snel mogelijk contact met je op.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl p-8 shadow-xl"
-          >
+          <div className="animate-fade-in-up animation-delay-200">
             {isSubmitted ? (
               <div className="text-center py-8">
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
@@ -297,24 +269,18 @@ export default function Contact() {
                 </div>
               </form>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
+          <div className="animate-fade-in-up">
             <h2 className="text-4xl font-bold text-stroop-700 mb-4">
               Veelgestelde Vragen
             </h2>
-          </motion.div>
+          </div>
 
           <div className="space-y-6">
             {[
@@ -335,21 +301,14 @@ export default function Contact() {
                 answer: "We zijn bezig met het opzetten van stroopwafel workshops. Houd onze social media in de gaten voor updates!"
               }
             ].map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-stroop-50 rounded-lg p-6"
-              >
+              <div className="animate-fade-in-up">
                 <h3 className="text-lg font-semibold text-stroop-700 mb-2">
                   {faq.question}
                 </h3>
                 <p className="text-stroop-600">
                   {faq.answer}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -1,0 +1,34 @@
+# Ignore all files in public except the ones we actually use
+public/*
+!public/logo-nieuw.png
+!public/logo.jpg
+!public/header-hq.jpg
+!public/header.jpg
+!public/highlights/_OP14687.jpg
+!public/highlights/_OP14749.jpg
+!public/highlights/_OP14946.jpg
+!public/highlights/_OP15078.jpg
+!public/highlights/_OP24522.jpg
+
+# Ignore development files
+node_modules
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore build artifacts
+.next
+out
+dist
+
+# Ignore scripts
+scripts/
+
+# Ignore git
+.git
+.gitignore
+
+# Ignore other development files
+*.log
+.DS_Store

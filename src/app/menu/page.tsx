@@ -59,12 +59,12 @@ export default async function Menu() {
               <div className="space-y-12">
                 {category.sections.map((section, sectionIndex) => (
                   <div
-                    key={section.sectionTitle}
+                    key={section.title}
                     className="bg-white rounded-2xl p-8 shadow-lg animate-fade-in-up"
                     style={{ animationDelay: `${sectionIndex * 0.1}s` }}
                   >
                     <h3 className="text-2xl font-bold text-stroop-700 mb-6 text-center">
-                      {section.sectionTitle}
+                      {section.title}
                     </h3>
                     
                     <div className="space-y-4">
@@ -91,7 +91,7 @@ export default async function Menu() {
                           
                           {item.price && (
                             <div className="flex items-center space-x-3">
-                              {item.popular && (
+                              {item.isPopular && (
                                 <div className="flex items-center">
                                   <Star className="w-4 h-4 text-stroop-500 fill-current" />
                                   <span className="ml-1 text-xs text-stroop-500">Popular</span>

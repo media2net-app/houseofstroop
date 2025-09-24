@@ -6,50 +6,61 @@ import Image from 'next/image';
 
 interface InstagramPost {
   id: string;
-  media_url: string;
+  imageUrl: string;
   caption: string;
   permalink: string;
-  media_type: string;
-  timestamp: string;
+  isActive: boolean;
+  order: number;
 }
 
 const InstagramFeed = () => {
   const [posts, setPosts] = useState<InstagramPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Mock data for demonstration - in production, you'd fetch from Instagram API
+  // Fetch posts from database
   useEffect(() => {
-    const mockPosts: InstagramPost[] = [
-      {
-        id: '1',
-        media_url: '/highlights/_OP15078.jpg',
-        caption: 'Fresh stroopwafels daily! Made with love in Curaçao 🧇✨',
-        permalink: 'https://www.instagram.com/p/example1/',
-        media_type: 'IMAGE',
-        timestamp: new Date().toISOString()
-      },
-      {
-        id: '2',
-        media_url: '/highlights/_OP14687.jpg',
-        caption: 'Perfect coffee & stroopwafel combo ☕ The best way to start your day!',
-        permalink: 'https://www.instagram.com/p/example2/',
-        media_type: 'IMAGE',
-        timestamp: new Date().toISOString()
-      },
-      {
-        id: '3',
-        media_url: '/highlights/_OP14946.jpg',
-        caption: 'Behind the scenes at House of Stroop! Our bakers at work 💕',
-        permalink: 'https://www.instagram.com/p/example3/',
-        media_type: 'IMAGE',
-        timestamp: new Date().toISOString()
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/instagram');
+        if (response.ok) {
+          const data = await response.json();
+          setPosts(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch Instagram posts:', error);
+        // Fallback to static images
+        setPosts([
+          {
+            id: '1',
+            imageUrl: '/highlights/_OP15078.jpg',
+            caption: 'Fresh stroopwafels daily! Made with love in Curaçao 🧇✨',
+            permalink: 'https://www.instagram.com/p/example1/',
+            isActive: true,
+            order: 0
+          },
+          {
+            id: '2',
+            imageUrl: '/highlights/_OP14687.jpg',
+            caption: 'Perfect coffee & stroopwafel combo ☕ The best way to start your day!',
+            permalink: 'https://www.instagram.com/p/example2/',
+            isActive: true,
+            order: 1
+          },
+          {
+            id: '3',
+            imageUrl: '/highlights/_OP14946.jpg',
+            caption: 'Behind the scenes at House of Stroop! Our bakers at work 💕',
+            permalink: 'https://www.instagram.com/p/example3/',
+            isActive: true,
+            order: 2
+          }
+        ]);
+      } finally {
+        setLoading(false);
       }
-    ];
+    };
 
-    setTimeout(() => {
-      setPosts(mockPosts);
-      setLoading(false);
-    }, 1000);
+    fetchPosts();
   }, []);
 
   if (loading) {
@@ -78,7 +89,7 @@ const InstagramFeed = () => {
         >
           <div className="aspect-square relative group overflow-hidden">
             <Image
-              src={post.media_url}
+              src={post.imageUrl}
               alt={post.caption}
               fill
               className="object-cover"

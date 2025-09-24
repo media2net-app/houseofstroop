@@ -4,8 +4,18 @@ import Preloader from '@/components/Preloader';
 import { Coffee, Heart, Star, MapPin, Clock, Users, BookOpen, ChevronDown, Instagram, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { prisma } from '@/lib/prisma';
 
-export default function Home() {
+export default async function Home() {
+  // Fetch hero content from database
+  const heroContent = await prisma.heroContent.findFirst({
+    where: { isActive: true }
+  });
+
+  // Fetch page content from database
+  const pageContent = await prisma.pageContent.findMany({
+    where: { isActive: true }
+  });
   return (
     <main className="min-h-screen">
       <Preloader />
@@ -20,10 +30,10 @@ export default function Home() {
           <div className="text-center text-white">
             <div className="mb-8">
               <h1 className="text-6xl md:text-8xl font-bold mb-8 animate-fade-in-up">
-                BUT FIRST COFFEE, WITH A STROOPWAFEL.
+                {heroContent?.title || "BUT FIRST COFFEE, WITH A STROOPWAFEL."}
               </h1>
               <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
-                Discover authentic, freshly made stroopwafels, delicious coffee to go, and fun workshops in the vibrant <strong>Kurá Hulanda Village</strong>. Stop by for a sweet treat or join us to learn the art of making your own stroopwafels!
+                {heroContent?.subtitle || "Discover authentic, freshly made stroopwafels, delicious coffee to go, and fun workshops in the vibrant Kurá Hulanda Village. Stop by for a sweet treat or join us to learn the art of making your own stroopwafels!"}
               </p>
             </div>
           </div>
